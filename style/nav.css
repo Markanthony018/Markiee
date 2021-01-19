@@ -30,3 +30,12 @@ input[type=text]{
 #responsive{
     width:100%;
 }
+#other{
+    height: calc(78vh - 110px);
+    overflow-y: scroll;
+  }
+#logo{
+    width:1.2em;
+    border-radius:10%;
+    color: red;
+}

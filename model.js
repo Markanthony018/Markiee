@@ -5,7 +5,7 @@ class YoutubeRedesign {
     async getLatestVideo(userInput){
          
         // api natin
-        const myapi = 'AIzaSyD1jZLQwPwHK3HC9J2APwfklkoUYs47-2I';
+        const myapi = 'AIzaSyDCouGzl-pxHHU96UDbpzJg__-l7mifZoU';
         
         // yung link kasama yung data ng user 
         const videoResponse = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}&key=${myapi}&maxResults=15`);
@@ -28,6 +28,7 @@ class UI {
         this.channelTitle = document.querySelector("#channel");
         this.videoDescription = document.querySelector("#description");
         this.videoTitle = document.querySelector("#title");
+        this.otherVideos = document.querySelector("#other")
     }
 
 
@@ -41,20 +42,20 @@ class UI {
         this.result.innerHTML = `
         <iframe id="responsive" class="embed-responsive-item" height="420" width="644"  src="https://www.youtube.com/embed/${userInput.items[0].id.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
            `;
-        this.videoTitle.innerHTML = `<i sclass="fas fa-video"></i> ${userInput.items[0].snippet.title}`
+        this.videoTitle.innerHTML = `${userInput.items[0].snippet.title}`
         // get the data from the api and append it to the channel title box element
-        this.channelTitle.innerHTML = `${userInput.items[0].snippet.channelTitle}`;
+        this.channelTitle.innerHTML = `&emsp;${userInput.items[0].snippet.channelTitle}`;
         // get the data from the api and append it to the description box element
         this.videoDescription.innerHTML = `${userInput.items[0].snippet.description}`;
         // this is the thumbnail.high.url
-        this.youtubeProfilePicture.setAttribute("src", `${userInput.items[0].snippet.thumbnails.high.url}`);
+        this.otherVideos.setAttribute("src", `${userInput.items[0].snippet.thumbnails.high.url}`);
 
         // why I used forEach function
         userInput.items.forEach(function(item, i=1){
             
             // tinawag lang natin yung other-videos na id
             // para san? para lagyan natin ng laman kagaya ng ginawa natin sa #banner
-            const otherVideos = document.querySelector("#other-videos");
+            const otherVids = document.querySelector("#other");
             // nagcreate tayo ng element na div
             var videoContainer = document.createElement("div");
             
@@ -80,9 +81,9 @@ class UI {
             
             //
             videoContainer.setAttribute("onclick", "callme(this.getAttribute('data-key'), this.getAttribute('data-channelTitle'), this.getAttribute('data-description'), this.getAttribute('data-image'));");
-            videoContainer.innerHTML = `<img class="img" id="other-video-img${i}" src="${userInput.items[i].snippet.thumbnails.default.url}"/><p class="video-title" id="other-video-title${i}">${userInput.items[i].snippet.title.substr(0,36)}</p>`;
+            videoContainer.innerHTML = `<img class="img" id="other-video-img${i}" src="${userInput.items[i].snippet.thumbnails.default.url}"/><p class="d-inline" id="other-video-title${i}">${userInput.items[i].snippet.title.substr(0,36)}</p>`;
 
-            otherVideos.appendChild(videoContainer);
+            otherVids.appendChild(videoContainer);
             
 
         });
