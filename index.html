@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Youtube Redesign</title>
+    <title>Youtube Project</title>
 
 </head>
 <body class="bg-dark" style=" font-family: 'Yusei Magic', sans-serif;">
     <div class="container">
        <!--Navigation-->
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark ">
-            <i id="logo" class="fab fa-youtube"></i> <a class="navbar-brand" href="#">YouTube Responsive</a>
+            <i id="logo" class="fab fa-youtube"></i> <a class="navbar-brand" href="#">YouTube Project</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavDropdown" aria-controls="NavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,24 +37,24 @@
             </div>
         </nav>
     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 text-light">
-                    <div class="embed-responsive embed-responsive-16by9" id="playing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 text-light">
+                <div class="embed-responsive embed-responsive-16by9" id="playing">
                        
-                    </div>
-                    <h6 id="title"></h6>
-                    <span  id="camlogo"><i  id="channel" class="fas fa-video"></i></span><br>
-                    <span id="description"></span>
-           
                 </div>
-                <div class="col-md-5"style="height:420px">
-                    <div class="card-title text-light" > <h4><i style="color:red" class="fab fa-youtube"></i> Playlists <a href="#" style="float:right;"> <i  class="fas fa-chevron-down"></i></a> </h4> </div>
+                <h6 id="title"></h6>
+                <span  id="camlogo"><i  id="channel" class="fas fa-video"></i></span><br>
+                <span id="description"></span><hr>
+           
+            </div>
+            <div class="col-md-5"style="height:420px">
+                 <div class="card-title text-light"> <h4><i style="color:red" class="fab fa-youtube"></i> Playlists <a href="#" style="float:right;"> <i  class="fas fa-chevron-down"></i></a> </h4> </div>
                     <div class="overflow-auto text-light" id="other"></div>
                     <h5 class="text-muted text-center d-block mt-5">Presented by &copy; Mark Cutie</h5>
-                </div>
-            </div> 
-        </div>
+            </div>
+        </div> 
+    </div>
 
 
     <!-- Bootstrap Script -->
@@ -64,8 +64,35 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>      
     <script type="module" src="controller.js"></script>
+    <script>
+        function callme(x,y,z,a){
+            const banner = document.querySelector("#playing");
 
-   
-   
+            const channelTitle = document.querySelector("#channel");
+
+            const descriptionContent = document.querySelector("#description");
+
+            const title = document.querySelector("#title");
+
+            const youtubeProfile = document.querySelector("#other")
+
+            banner.innerHTML = '';
+
+            banner.innerHTML = `<iframe class="embed-responsive-item" height="420" width="644" src="https://www.youtube.com/embed/${x}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `;
+
+            channelTitle.innerHTML = `<i sclass="fas fa-video"></i> ${y}`;
+
+            descriptionContent.innerHTML = z;
+
+            youtubeProfile.setAttribute("src", a);
+        }
+
+
+        document.querySelector("#myform").addEventListener('submit', function(){
+            const otherVideos = document.querySelector("#other");
+            otherVideos.innerHTML = "";
+        })
+    </script>
 </body>
 </html>
